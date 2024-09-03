@@ -1,12 +1,13 @@
-(setf a (list (list "1" "2" "3" "4" "5") (list (cons "1" "2") (cons "3" "4") (cons "5" "6") (cons "7" "8")) (list "12345" 5)))
+(in-package :cl-http-message)
+;(setf a (list (list "1" "2" "3" "4" "5") (list (cons "1" "2") (cons "3" "4") (cons "5" "6") (cons "7" "8")) (list "12345" 5)))
 
-(declaim (inline string-to-octets))
-(defun string-to-octets (string-message)
-    (map 'string #'code-char string-message) )
+(declaim (inline vector-to-string))
+(defun vector-to-string (vector-message)
+    (map 'string #'code-char vector-message) )
     
-(declaim (inline octets-to-string))
-(defun octets-to-string (octets-message)
-    (map '(vector (unsigned-byte 8)) #'char-code octets-message) )
+(declaim (inline string-to-vector))
+(defun string-to-vector (string-message)
+    (map '(vector (unsigned-byte 8)) #'char-code string-message) )
     
 (defun find-from-message-list (message-list content-name)
     (let ((content-list (cadr message-list)))
@@ -43,7 +44,7 @@
         nil ))
 |#
 
-(defun octets-message-to-list (octets-message)
+(defun octets-message-to-list (octets-message) ;(search #(32) buffer :start2 number1 :end2 number2
     nil )
     
 (defun list-to-string-message (message-list)
@@ -58,5 +59,5 @@
                     (format http-message "~A~A~c~c" (car face-content-cons) (cdr face-content-cons) #\return #\newline) )
                 (format http-message "~c~c~A" #\return #\newline (car http-body))))))
     
-(defun list-to-octets-message (message-list)
+(defun list-to-octets-message (message-list) ;(concatenate '(vector (unsigned-byte 8)) 
     (string-to-octets (list-to-string-message http-list)))
