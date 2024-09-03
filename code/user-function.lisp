@@ -18,6 +18,24 @@
     
 (defun add-to-message-list (message-list face-content-cons)
     (nconc (cadr message-list) (list face-content-cons)) )
+
+(defun split-octets (the-content the-vector vector-length list-length) 
+    (declare (fixnum list-length vector-length))
+    (let ((the-path (search the-vector the-content)))
+        (if (or (= list-length 0) (null the-path))
+            (list the-content)
+            (cons
+                (subseq the-content 0 the-path)
+                (split-octets
+                    (subseq the-content (+ the-path vector-length))
+                    the-vector
+                    vector-length
+                    (if (= list-length -1) 
+                    -1 
+                    (1- list-length) ))))))
+
+(defun split-octets-remove-empty (the-list)
+    (remove-if (lambda (a) (equalp #() a)) the-list))
     
 #|
 (let (( ))
