@@ -1,7 +1,7 @@
 (in-package :cl-user)
 
 (defpackage #:cl-linux-queue
-    (:use :cl :cl-user :cffi)
+    (:use :cl :cl-user)
     (:export 
         :string-to-vector
         :vector-to-string 
