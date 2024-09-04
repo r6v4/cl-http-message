@@ -5,10 +5,10 @@
     (:export 
         :string-to-vector
         :vector-to-string 
-        :string-message-to-list
-        :vector-message-to-list
-        :list-to-string-message
-        :list-to-vector-message
-        :find-from-message-list 
-        :add-to-message-list 
+        :vector-to-list
+        :list-to-vector
+        :find-from-list 
+        :add-to-list 
+        :split-octets
+        :remove-empty-item
         ))
