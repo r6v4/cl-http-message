@@ -57,7 +57,13 @@ sbcl
  (NIL NIL))
 
 |#
-
+#|
+(cl-http-message:vector-to-string
+    (cl-http-message:find-from-list
+        (cadr *)
+        (cl-http-message:string-to-vector "Connection: ") ))
+;"Keep-Alive"
+|#
 (let* ((http-body (cl-http-message:string-to-vector "1234554321"))
        (http-body-length (length http-body)) )
     (cl-http-message:list-to-vector
@@ -120,5 +126,4 @@ string vector-to-string (array http-message-vector);
 list remove-empty-item (list have-some-empty-list);
 array find-from-list (list some-cons-list, array key-of-item);
 list add-to-list (list old-list);
-
 ```
