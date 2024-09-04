@@ -11,12 +11,11 @@
     (map '(vector (unsigned-byte 8)) #'char-code string-message) )
     
 (defun find-from-list (message-list content-name)
-    (let ((content-list (cdr message-list)))
-        (block mark-place
-            (loop for (k . v) in content-list do
-                (if (equalp k content-name)
-                    (return-from mark-place v)
-                    nil )))))
+    (block mark-place
+        (loop for (k . v) in message-list do
+            (if (equalp k content-name)
+                (progn (format t "~A" v) (finish-output))
+                nil ))))
     
 (defun add-to-list (message-list face-content-cons)
     (nconc (cadr message-list) (list face-content-cons)) )
