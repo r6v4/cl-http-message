@@ -6,7 +6,6 @@
     (optimize
         (speed              3)
         (space              1)
-        (safety             0)
         (debug              0)
         (compilation-speed  0)))
 
