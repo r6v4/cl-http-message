@@ -1,6 +1,6 @@
 (in-package :cl-user)
 
-(defpackage #:cl-linux-queue
+(defpackage #:cl-http-message
     (:use :cl :cl-user)
     (:export 
         :string-to-vector
