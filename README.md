@@ -46,9 +46,45 @@ sbcl
 
 (cl-http-message:vector-to-list http-message)
 
+(let* ((http-body (cl-http-message:string-to-vector "1234554321"))
+       (http-body-length (length http-body)) )
+    (cl-http-message:list-to-vector
+        (list
+            (list "HTTP/1.1" 200 "OK")
+            (list
+                (cons "Connection: "         "Keep-Alive")
+                (cons "Server: "             "common-lisp")
+                (cons "Set-Cookie: "         "mykey=myvalue; expires=Mon, 17-Jul-2017 16:06:00 GMT; Max-Age=31449600; Path=/; secure")
+                (cons "X-Frame-Options: "    "SAMEORIGIN") )
+        (list http-body http-body-length) )))
+
+;(cl-http-message:vector-to-string *)
+
 ```
 
 ## API
+```common-lisp
+;output of vector-to-list
+(list
+    (list http-method http-url http-arg-list http-host http-cookie)
+    http-face-cons-list
+    (list http-body body-length))
+
+;input of list-to-vector
+(list
+    (list http-version http-status-code http-state)
+    http-face-cons-list
+    (list http-body body-length))
+
+```
 ```text
-list vector-to-list (vector message-octets);
+list vector-to-list (array message-octets);
+array list-to-vector (list http-message-list);
+list split-octets (array message-octets, array split-vector, int vector-length, int list-max-length);
+array string-to-vector (string http-message-string);
+string vector-to-string (array http-message-vector);
+list remove-empty-item (list have-some-empty-list);
+array find-from-list (list some-cons-list, array key-of-item);
+list add-to-list (list old-list);
+
 ```
