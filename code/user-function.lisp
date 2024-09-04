@@ -98,8 +98,8 @@
                                                 (cons (subseq a 0 (1+ b)) (subseq a (1+ b)))
                                                 nil )))
                                     http-face-list )
-                            http-host (find-from-list http-face-list host-vector)
-                            http-cookie (find-from-list http-face-list cookie-vector) )
+                            http-host (find-from-list http-face-cons-list host-vector)
+                            http-cookie (find-from-list http-face-cons-list cookie-vector) )
                         (if http-host
                             (progn
                                 (setq host-end (search #(58) http-host :from-end t))
