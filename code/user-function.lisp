@@ -2,6 +2,14 @@
 ;(setf a (list (list "1" "2" "3" "4" "5") (list (cons "1" "2") (cons "3" "4") (cons "5" "6") (cons "7" "8")) (list "12345" 5)))
 ;(setf b (list (list "1" "2" "3") (list (cons "1" "2") (cons "3" "4") (cons "5" "6") (cons "7" "8")) (list "12345" 5)))
 
+(declaim
+    (optimize
+        (speed              3)
+        (space              1)
+        (safety             0)
+        (debug              0)
+        (compilation-speed  0)))
+
 (declaim (inline vector-to-string))
 (defun vector-to-string (vector-message)
     (map 'string #'code-char vector-message) )
@@ -9,14 +17,16 @@
 (declaim (inline string-to-vector))
 (defun string-to-vector (string-message)
     (map '(vector (unsigned-byte 8)) #'char-code string-message) )
-    
+
+(declaim (inline find-from-list))
 (defun find-from-list (message-list content-name)
     (block mark-place
         (loop for (k . v) in message-list do
             (if (equalp k content-name)
                 (return-from mark-place v)
                 nil ))))
-    
+
+(declaim (inline add-to-list))
 (defun add-to-list (message-list face-content-cons)
     (nconc (cadr message-list) (list face-content-cons)) )
 
@@ -35,6 +45,7 @@
                     -1 
                     (1- list-length) ))))))
 
+(declaim (inline remove-empty-item))
 (defun remove-empty-item (the-list)
     (remove-if (lambda (a) (equalp #() a)) the-list))
 
