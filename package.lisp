@@ -10,5 +10,4 @@
         :find-from-list 
         :add-to-list 
         :split-octets
-        :remove-empty-item
-        ))
+        :remove-empty-item ))
