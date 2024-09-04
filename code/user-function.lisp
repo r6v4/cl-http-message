@@ -14,7 +14,7 @@
     (block mark-place
         (loop for (k . v) in message-list do
             (if (equalp k content-name)
-                (progn (format t "~A" v) (finish-output))
+                (return-from mark-place v)
                 nil ))))
     
 (defun add-to-list (message-list face-content-cons)
