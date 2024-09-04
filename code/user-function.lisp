@@ -43,7 +43,7 @@
         (host-vector    (string-to-vector "Host: "))
         (cookie-vector  (string-to-vector "Cookie: ")) )
     (defun vector-to-list (http-octets)
-        (let (  vector-length head-end body-start head-list 
+        (let (  vector-length http-head head-end body-start head-list 
                 http-hair http-face-list http-hair-list 
                 http-method http-url-line http-url url-end 
                 http-arg-line http-arg-list http-arg-cons-list 
