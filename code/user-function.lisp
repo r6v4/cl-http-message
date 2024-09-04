@@ -10,7 +10,7 @@
 (defun string-to-vector (string-message)
     (map '(vector (unsigned-byte 8)) #'char-code string-message) )
     
-(defun find-from-message-list (message-list content-name)
+(defun find-from-list (message-list content-name)
     (let ((content-list (cadr message-list)))
         (block mark-place
             (loop for (k . v) in content-list do
@@ -18,7 +18,7 @@
                     (return-from mark-place v)
                     nil )))))
     
-(defun add-to-message-list (message-list face-content-cons)
+(defun add-to-list (message-list face-content-cons)
     (nconc (cadr message-list) (list face-content-cons)) )
 
 (defun split-octets (the-content the-vector vector-length list-length) 
