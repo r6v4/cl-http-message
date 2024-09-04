@@ -11,7 +11,7 @@
     (map '(vector (unsigned-byte 8)) #'char-code string-message) )
     
 (defun find-from-list (message-list content-name)
-    (let ((content-list (cadr message-list)))
+    (let ((content-list (cdr message-list)))
         (block mark-place
             (loop for (k . v) in content-list do
                 (if (equalp k content-name)
