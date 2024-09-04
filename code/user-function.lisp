@@ -60,10 +60,10 @@
                         (setq   
                             http-head       (subseq http-octets 0 head-end)
                             body-start      (+ 4 head-end)
-                            head-list       (split-octets #(13 10) http-head 2 32)
+                            head-list       (split-octets http-head #(13 10) 2 32)
                             http-hair       (car head-list)
                             http-face-list  (cdr head-list)
-                            http-hair-list  (split-octets #(32) http-hair 1 3)
+                            http-hair-list  (split-octets http-hair #(32) 1 3)
                             http-method     (car http-hair-list)
                             http-url-line   (cadr http-hair-list) )
                         (if (or (equalp http-method get-vector) (equalp http-method head-vector))
@@ -78,7 +78,7 @@
                             (setq
                                 http-url            (subseq http-url-line 0 url-end)
                                 http-arg-line       (subseq http-url-line (1+ url-end))
-                                http-arg-list       (split-octets #(38) http-arg-line 1 64)
+                                http-arg-list       (split-octets http-arg-line #(38) 1 64)
                                 http-arg-list       (remove-empty-item http-arg-list)
                                 http-arg-cons-list  
                                     (mapcar 
@@ -98,8 +98,8 @@
                                                 (cons (subseq a 0 (1+ b)) (subseq a (1+ b)))
                                                 nil )))
                                     http-face-list )
-                            http-host (find-from-message-list http-face-list host-vector)
-                            http-cookie (find-from-message-list http-face-list cookie-vector) )
+                            http-host (find-from-list http-face-list host-vector)
+                            http-cookie (find-from-list http-face-list cookie-vector) )
                         (if http-host
                             (progn
                                 (setq host-end (search #(58) http-host :from-end t))
