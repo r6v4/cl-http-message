@@ -2,7 +2,7 @@
     :name "cl-http-message"
     :description "parsing and generation of http messages"
     :author "r6v4@pm.me"
-    :version 1.0
+    :version "2.0"
     :depends-on () 
     :serial t
     :components (
