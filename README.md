@@ -43,7 +43,7 @@ sbcl
   110 103 58 32 105 100 101 110 116 105 116 121 13 10 67 111 110 110 101 99 116
   105 111 110 58 32 75 101 101 112 45 65 108 105 118 101 13 10 13 10))
 
-(cl-http-message:vector-to-list http-message)
+(cl-http-message:vector-to-list http-message nil)
 #|
 ((#(71 69 84) #(47 49 50 51 52 53) NIL #(49 50 55 46 48 46 48 46 49) NIL)
  ((#(72 111 115 116 58 32) . #(49 50 55 46 48 46 48 46 49 58 56 48 56 48))
@@ -118,7 +118,7 @@ X-Frame-Options: SAMEORIGIN
 
 ```
 ```text
-list vector-to-list (array message-octets);
+list vector-to-list (array message-octets, number message-length);
 array list-to-vector (list http-message-list);
 list split-octets (array message-octets, array split-vector, int vector-length, int list-max-length);
 array string-to-vector (string http-message-string);
